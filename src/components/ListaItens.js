@@ -34,7 +34,12 @@ export default class ListaItens extends Component {
       
     return (
       <View>
-          {console.log(this.state.listaItens)}
+          {this.state.listaItens.map(
+              item=> 
+              (
+                  <Text key={item.id}>{item.title}</Text>
+                )
+            )}
       </View>
     );
   }
