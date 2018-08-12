@@ -11,17 +11,13 @@ import {
   View
 } from 'react-native';
 
-import Itens from './Itens';
-
-export default class ListaItens extends Component {
+export default class Itens extends Component {
 
   render() {
       
     return (
       <View>
-          <Itens/>
-          <Itens/>
-          <Itens/>
+          <Text>Detalhes do itens</Text>
       </View>
     );
   }
