@@ -8,7 +8,9 @@ import React, { Component } from 'react';
 import {
   StyleSheet,
   Text,
-  View
+  View,
+  ScrollView,
+  Alert
 } from 'react-native';
 
 import axios from 'axios';
@@ -20,27 +22,23 @@ export default class ListaItens extends Component {
             super(props);
             this.state = {  listaItens : [] };
         }
+ 
     componentWillMount() {
         //requisicao https
-        //http://faus.com.br/recursos/c/dmairr/api/itens.html
-        axios.get('https://jsonplaceholder.typicode.com/photos').then(response=>{
+        //https://api.myjson.com/bins/q8fbw
+        axios.get('https://api.myjson.com/bins/q8fbw').then(response=>{
             this.setState({listaItens:  response.data});
-        }).catch(()=>{
-            console.log(error);
+            
+        }).catch(error=>{
+            Alert.alert(error.message);
         });
     }
 
   render() {
-      
     return (
-      <View>
-          {this.state.listaItens.map(
-              item=> 
-              (
-                  <Text key={item.id}>{item.title}</Text>
-                )
-            )}
-      </View>
+      <ScrollView style={{backgroundColor: '#ddd'}}>
+          {this.state.listaItens.map(item=> (<Itens key={item.id} item={item} />))}
+      </ScrollView>
     );
   }
 }
